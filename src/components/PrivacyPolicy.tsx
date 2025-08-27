@@ -1,33 +1,41 @@
 import { ArrowLeft, Shield, Eye, Database, Users, Lock, Mail } from "lucide-react";
 
 interface PrivacyPolicyProps {
-  onBack: () => void;
+  onNavigate: (route: string) => void;
 }
 
-function PrivacyPolicy({ onBack }: PrivacyPolicyProps) {
+function PrivacyPolicy({ onNavigate }: PrivacyPolicyProps) {
   return (
     <div className="min-h-screen bg-gradient-to-br from-klever-light to-white font-poppins">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-4xl mx-auto px-6 py-4">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-3">
+              <button
+                onClick={() => onNavigate('home')}
+                className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors"
+              >
+                <ArrowLeft className="w-5 h-5 text-gray-600" />
+              </button>
+              <div className="w-10 h-10 flex items-center justify-center">
+                <img
+                  src="/images/klever-logo.png"
+                  alt="Klever Logo"
+                  className="rounded-lg"
+                />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gray-800">Klever</h1>
+                <p className="text-sm text-gray-600">Privacy Policy</p>
+              </div>
+            </div>
             <button
-              onClick={onBack}
-              className="w-10 h-10 flex items-center justify-center hover:bg-gray-100 rounded-lg transition-colors"
+              onClick={() => onNavigate('home')}
+              className="px-4 py-2 text-klever-primary hover:bg-klever-light rounded-lg transition-colors"
             >
-              <ArrowLeft className="w-5 h-5 text-gray-600" />
+              Back to Home
             </button>
-            <div className="w-10 h-10 flex items-center justify-center">
-              <img
-                src="/images/klever-logo.png"
-                alt="Klever Logo"
-                className="rounded-lg"
-              />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">Klever</h1>
-              <p className="text-sm text-gray-600">Privacy Policy</p>
-            </div>
           </div>
         </div>
       </div>
