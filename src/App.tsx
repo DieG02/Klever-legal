@@ -4,9 +4,26 @@ import {
   Trash2,
   Shield,
   AlertTriangle,
+  FileText,
+  ExternalLink,
 } from "lucide-react";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import TermsConditions from "./components/TermsConditions";
+import { useState } from "react";
+
+type Route = 'home' | 'privacy' | 'terms';
 
 function App() {
+  const [currentRoute, setCurrentRoute] = useState<Route>('home');
+
+  if (currentRoute === 'privacy') {
+    return <PrivacyPolicy onBack={() => setCurrentRoute('home')} />;
+  }
+
+  if (currentRoute === 'terms') {
+    return <TermsConditions onBack={() => setCurrentRoute('home')} />;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-klever-light to-white font-poppins">
       {/* Header */}
@@ -167,6 +184,27 @@ function App() {
                 </a>
                 .
               </p>
+            </div>
+
+            {/* Legal Links */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8 border-t border-gray-200">
+              <button
+                onClick={() => setCurrentRoute('privacy')}
+                className="flex items-center space-x-2 text-klever-primary hover:text-blue-600 transition-colors"
+              >
+                <Shield className="w-4 h-4" />
+                <span>Privacy Policy</span>
+                <ExternalLink className="w-3 h-3" />
+              </button>
+              <div className="hidden sm:block w-px h-4 bg-gray-300"></div>
+              <button
+                onClick={() => setCurrentRoute('terms')}
+                className="flex items-center space-x-2 text-klever-primary hover:text-blue-600 transition-colors"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Terms & Conditions</span>
+                <ExternalLink className="w-3 h-3" />
+              </button>
             </div>
           </div>
         </div>
